@@ -1,0 +1,99 @@
+/* House style: a man page on the web (see the skill's references/ui-style.md).
+   Change the variables first; most forks won't need to touch anything else.
+
+   Colorscheme: all colors live in the seven color variables below, nowhere else.
+   For a single fixed scheme, put it in :root, delete the @media block, and set
+   `html { color-scheme: dark }` (or light). Check readability with the skill's
+   scripts/contrast.py. */
+
+:root {
+  --font: Verdana, "DejaVu Sans", Arial, sans-serif;
+  --mono: "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  --size: 15px;
+  --width: 52em;
+  --fg: #000;
+  --bg: #fff;
+  --muted: #666;
+  --rule: #ccc;
+  --link: #00c;
+  --visited: #551a8b;
+  --flash: #ffffcc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #ddd;
+    --bg: #111;
+    --muted: #999;
+    --rule: #444;
+    --link: #8ab4f8;
+    --visited: #c58af9;
+    --flash: #333300;
+  }
+}
+
+html { color-scheme: light dark; }
+
+body {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 0 1em 4em;
+  font: var(--size)/1.5 var(--font);
+  color: var(--fg);
+  background: var(--bg);
+}
+
+a { color: var(--link); }
+a:visited { color: var(--visited); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }
+
+/* header + status line */
+header { border-bottom: 1px solid var(--rule); margin-bottom: 1em; }
+header .bar { margin: .6em 0 .3em; }
+header .bar a { margin-right: .4em; }
+header .nav { float: right; }
+header .nav a { margin: 0 0 0 .6em; }
+#status { margin: 0 0 .5em; color: var(--muted); min-height: 0; }
+#status:empty { display: none; }
+body.loading #status { display: block; }
+body.loading #status::before { content: "loading… "; }
+
+/* document */
+h1 { font-size: 1.4em; margin: .6em 0 .4em; }
+h2 { font-size: 1em; font-variant: small-caps; letter-spacing: .03em; margin: 1.6em 0 .4em; }
+h3 { font-size: 1em; margin: 1.2em 0 .3em; }
+p, ul, ol, dl, table, pre { margin: .4em 0 .8em; }
+ul, ol { padding-left: 2em; }
+dt { font-weight: bold; }
+dd { margin: 0 0 .4em 2em; }
+pre, code { font-family: var(--mono); font-size: .93em; }
+pre { white-space: pre-wrap; }
+.text { white-space: pre-wrap; }
+.muted { color: var(--muted); }
+.flash { background: var(--flash); border: 1px dashed var(--rule); padding: .3em .6em; }
+hr { border: 0; border-top: 1px solid var(--rule); }
+
+table { border-collapse: collapse; }
+th { text-align: left; font-weight: bold; border-bottom: 1px solid var(--rule); }
+th, td { padding: .1em 1em .1em 0; vertical-align: top; }
+td.num, th.num { text-align: right; font-family: var(--mono); }
+
+img { max-width: 100%; height: auto; }
+img.cover { float: right; width: 160px; margin: 0 0 1em 1em; }
+img.thumb { width: 40px; height: 40px; object-fit: cover; vertical-align: middle; }
+
+/* text buttons: actions look like [words], not widgets */
+form.inline { display: inline; }
+button {
+  font: inherit;
+  color: var(--link);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+button:hover { text-decoration: underline; }
+input, textarea, select { font: inherit; color: inherit; background: var(--bg); border: 1px solid var(--rule); padding: .1em .3em; }
+textarea { width: 100%; box-sizing: border-box; }
+.pager { margin-top: 1em; }
+.actions { margin: .4em 0 .8em; }
