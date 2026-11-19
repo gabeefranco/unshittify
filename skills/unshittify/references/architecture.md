@@ -33,6 +33,7 @@ The window shows the static `ui/` folder, which is embedded in the binary. No de
 | `src-tauri/src/api.rs` | Endpoint functions and response structs |
 | `src-tauri/src/state.rs` | `AppState`: data dir, HTTP client, flash, and your credentials and caches |
 | `SPEC.md` | The recon output and build status |
+| `install.sh` | Linux installer: `sudo ./install.sh` builds the app and adds it to the user's app menu |
 | `AGENTS.md` | Short orientation for whoever works on the app next |
 
 ## Adding a page
@@ -106,6 +107,7 @@ Routes that need credentials read them from `APP_DATA_DIR`. A debug run of the a
 - `cd src-tauri && cargo run` opens the app (debug build).
 - `cargo tauri dev` does the same with file watching, if the Tauri CLI is installed (`cargo install tauri-cli --version "^2" --locked`).
 - `cargo tauri build` builds installers. Run `cargo tauri icon <png>` first for platform icons.
+- `sudo ./install.sh` (Linux) installs the app for the user who ran sudo, without the Tauri CLI. Root installs the system libraries; the release build (`cargo build --release --features tauri/custom-protocol`) runs as the user. The binary goes to `~/.local/bin`, the icon to `~/.local/share/icons/<identifier>.png`, and the desktop entry to `~/.local/share/applications/<identifier>.desktop`. `--no-deps` skips the packages, and `--uninstall` removes the three files but keeps the app's data. The desktop entry uses `productName` as its name, `src-tauri/icons/icon.png` as its icon, and the `COMMENT` default at the top of the script as its description.
 
 ## Security model
 

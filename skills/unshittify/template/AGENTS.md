@@ -5,6 +5,7 @@ This is an "unshittified" native client: Rust + Tauri 2, with pages rendered by 
 ## Layout
 
 ```
+install.sh             Linux installer (sudo): builds, installs to ~/.local, adds a menu entry
 ui/index.html          header, status line, <main>. Edit header links here
 ui/app.js              hash router (~100 lines). Rarely needs changes
 ui/style.css           all styling. Variables at the top
@@ -33,4 +34,5 @@ cd src-tauri
 cargo run                                  # open the app
 cargo run -- --render '/notes?page=2'      # print one page as standalone HTML (no window)
 cargo clippy && cargo build --release      # or: cargo tauri build, for installers
+sudo ../install.sh                         # Linux: install into ~/.local with a menu entry
 ```

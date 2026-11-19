@@ -90,6 +90,7 @@ Once the core screens work, remove the example `notes` pages from the template (
 - Run `cargo clippy` and `cargo build` with no warnings you introduced, then render every route with `--render`.
 - You probably can't see the native window, so ask the user to run the app and click through the core tasks.
 - Update the project `README.md` (what works, how to run it, auth setup, known gaps and dropped features) and the status column in `SPEC.md`.
+- **Install it on Linux.** The template ships `install.sh`, which installs the app the way a person actually uses it: `sudo ./install.sh` installs the build libraries with the system package manager, builds a release as the user who ran sudo, and puts the binary, icon and a desktop entry in that user's `~/.local`. The app then shows up in their app menu. It reads the app's names from `Cargo.toml` and `tauri.conf.json`, so it needs no edits after renaming, but set its `COMMENT` default to a one-line description of the app. Check it with `bash -n install.sh`, then ask the user to run it. Don't run `sudo` yourself.
 
 ## Ground rules
 
@@ -111,4 +112,4 @@ Once the core screens work, remove the example `notes` pages from the template (
 | `references/ui-style.md` | The house style: widget → text translations | Before writing any page |
 | `references/architecture.md` | How the template works, how to extend it | Step 6 onward |
 | `scripts/contrast.py` | Checks text/background contrast of the palette in a `style.css` | After applying or changing colors |
-| `template/` | The starter app you copy | Step 6 |
+| `template/` | The starter app you copy, including `install.sh` for Linux | Step 6, and step 8 for `install.sh` |
